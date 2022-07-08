@@ -1,0 +1,1 @@
+console.log(`api_key=a` + API_KEY);
