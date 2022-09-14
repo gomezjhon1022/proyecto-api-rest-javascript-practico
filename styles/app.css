@@ -2,20 +2,11 @@
 * { box-sizing: border-box; }
 
 :root {
-    --purple-light-1: #FBFAFB;
-    --purple-light-2: #EEEAF2;
-    --purple-medium-1: #AA83C8;
-    --purple-medium-2: #8B48BF;
-    --purple-medium-3: #5C218A;
-    --purple-dark-1: #3E0F64;
-    --purple-dark-2: #2A0646;
 
-    --yellow: #EECC75;
-    --green: #CAD297;
-    --aqua: #B7EAC5;
-    --lightBlue: #A2EEE5;
-    --darkBlue: #8EA2EA;
-    --red: #F09D9D;
+    --beige-1:beige;
+    --red-dark-1: #a31915;
+    --red-dark-2: #E13C2F;
+    --white-1:#FFFFFF;
 
     --font-family-titles: 'Dosis', sans-serif;
     --font-family-text: 'Red Hat Display', sans-serif;
@@ -26,13 +17,12 @@
 }
 
 html {
-    background-color: var(--purple-medium-3);
+    background-color: black;
 }
 
 body {
-    background-color: red;
-    background-color: var(--purple-light-1);
-    color: var(--purple-dark-2);
+    background-color: black;
+    color: var(--white-1);
     font-family: var(--font-family-text);
     font-weight: var(--font-weight-text1);
     font-size: 16px;
@@ -47,7 +37,6 @@ h1, h2, h3 {
 
 h1, h2 {
     font-size: 24px;
-    color: var(--purple-dark-2);
     font-family: var(--font-family-titles);
     font-weight: var(--font-weight-title1);
     margin: 0;
@@ -67,15 +56,14 @@ h3 {
 }
 
 input {
-    background-color: var(--purple-light-2);
-    color: var(--purple-medium-2);
+    background-color: black;
+    color: white;
     border: none;
     font-size: 18px;
     padding-left: 16px;
 }
 
 input::placeholder {
-    color: var(--purple-medium-1);
     font-family: var(--font-family-text);
 }
 
@@ -149,14 +137,21 @@ button {
 }
 
 .movie-btn--liked {
-    background-color: var(--purple-light-2);
+    background-color: beige;
 }
 
 .movie-btn--liked::before {
-    content: '💜';
+    content: '❤️';
 }
 
-.categoriesPreview-list, .categories-list {
+.categoriesPreview-list {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-wrap:nowrap;
+    overflow-x: scroll;
+}
+.categories-list {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -184,6 +179,7 @@ button {
 /* Header */
 .header-container {
     padding-top: 40px;
+    background-color: black;
 }
 
 .header-container--long {
@@ -197,12 +193,13 @@ button {
 
 }
 
-.header-container--categoryView {
+.header-container--long {
     background: linear-gradient(180deg, rgba(238, 204, 117, 0.5) 0%, rgba(238, 204, 117, 0) 72.92%);
 }
 
 .header-title {
     margin-bottom: 16px;
+    color: var(--red-dark-2);
 }
 
 .header-arrow {
@@ -213,7 +210,7 @@ button {
     display: inline-block;
 }
 .header-arrow--white {
-    color: var(--purple-light-1);
+    color: var(--red-dark-2);
 }
 
 .header-searchForm {
@@ -229,12 +226,14 @@ button {
     width: 100%;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    border: 2px solid white;
 }
 .header-searchForm button {
     width: 56px;
     height: 48px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    border: 2px solid white;
 }
 
 
@@ -249,6 +248,7 @@ button {
     border-radius: 8px;
     height: 32px;
     width: 72px;
+    background-color: var(--red-dark-2);
 }
 
 
@@ -263,7 +263,41 @@ button {
 
 .trendingPreview-movieList .movie-container, .liked-movieList .movie-container {
     display: inline-block;
-    margin-right: 8px;
+    margin-right: 12px;
+    overflow-x: scroll ;
+    padding-bottom: 30px;
+
+
+}
+
+.trendingPreview-movieList::-webkit-scrollbar-track,
+.liked-movieList::-webkit-scrollbar-track,
+.relatedMovies-scrollContainer::-webkit-scrollbar-track,
+.categoriesPreview-list::-webkit-scrollbar-track{
+	background: black;
+}
+
+.trendingPreview-movieList::-webkit-scrollbar-thumb,
+.liked-movieList::-webkit-scrollbar-thumb,
+.relatedMovies-scrollContainer::-webkit-scrollbar-thumb,
+.categoriesPreview-list::-webkit-scrollbar-thumb {
+    background-color: red;
+    border-radius: 8px;
+}
+
+.trendingPreview-movieList::-webkit-scrollbar,
+.liked-movieList::-webkit-scrollbar,
+.relatedMovies-scrollContainer,
+.relatedMovies-scrollContainer::-webkit-scrollbar,
+.categoriesPreview-list::-webkit-scrollbar {
+	height: 0.5rem;
+}
+
+.trendingPreview-movieList::-webkit-scrollbar-thumb:hover,
+.liked-movieList::-webkit-scrollbar-thumb:hover,
+.relatedMovies-scrollContainer::-webkit-scrollbar-thumb:hover,
+.categoriesPreview-list::-webkit-scrollbar-thumb:hover {
+	background: grey;
 }
 
 .trendingPreview-movieList .movie-container .movie-img, .liked-movieList .movie-container .movie-img {
@@ -278,46 +312,23 @@ button {
 
 /* Categories */
 .category-container {
-    width: 45%;
+
+    background-color: #333333;
+    border-radius: 15px;
+    margin: 15px 10px 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.category-container:hover {
+    background-color: var(--red-dark-2);
 }
 
 .category-title {
-    margin-bottom: 8px;
-    cursor: pointer;
+    margin: 10px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
-
-.category-title::before {
-    content: '••••';
-    color: transparent;
-  /* TODO: cambiar color por ID de la categoría */
-    background-color: var(--idColor);
-    border-radius: 8px;
-    margin-right: 8px;
-    width: 8px;
-    height: 8px;
-}
-#id28 { --idColor: var(--yellow); }
-#id12 { --idColor: var(--red); }
-#id16 { --idColor: var(--green); }
-#id35 { --idColor: var(--lightBlue); }
-#id80 { --idColor: var(--darkBlue); }
-#id99 { --idColor: var(--purple-dark-1); }
-#id18 { --idColor: var(--purple-medium-1); }
-#id10751 { --idColor: var(--yellow); }
-#id14 { --idColor: var(--red); }
-#id36 { --idColor: var(--green); }
-#id27 { --idColor: var(--lightBlue); }
-#id10402 { --idColor: var(--darkBlue); }
-#id9648 { --idColor: var(--purple-dark-1); }
-#id10749 { --idColor: var(--purple-medium-1); }
-#id878 { --idColor: var(--yellow); }
-#id10770 { --idColor: var(--red); }
-#id53 { --idColor: var(--green); }
-#id10752 { --idColor: var(--lightBlue); }
-#id37 { --idColor: var(--darkBlue); }
 
 
 /* Generic List (search, trending & category) */
@@ -347,7 +358,7 @@ button {
     margin-top: 403px;
     z-index: 1;
     position: absolute;
-    background-color: var(--purple-light-1);
+    background-color: black;
 }
 
 .movieDetail-title {
@@ -389,6 +400,7 @@ button {
     white-space: nowrap;
     width: calc(100vw - 24px);
     padding-bottom: 16px;
+    height: auto;
 }
 
 .relatedMovies-scrollContainer .movie-container {
