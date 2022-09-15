@@ -1,14 +1,30 @@
 // Data
+let lang = 'es-Co';
 
-const api = axios.create({
+
+let api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
     },
     params: {
         'api_key': API_KEY,
+        'language': lang,
     },
 });
+
+function updateApi() {
+    api = axios.create({
+        baseURL: 'https://api.themoviedb.org/3/',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        params: {
+            'api_key': API_KEY,
+            'language': lang,
+        },
+    });
+}
 
 function likedMoviesList() {
     const item = JSON.parse(localStorage.getItem('liked_movies'));
@@ -76,8 +92,8 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         const movieBtn = document.createElement('button');
         movieBtn.classList.add('movie-btn');
         likedMoviesList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
-        
-        console.log(likedMoviesList()[movie.id]);
+
+       // console.log(likedMoviesList()[movie.id]);
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
             likeMovie(movie);
@@ -120,15 +136,12 @@ function createCategories (categories, container) {
 
 // Llamados a la API
 
-
-
 async function getTrendingMoviesPreview () {
     // // const res = await fetch ('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
     // // const data = await res.json();
     // // const movies = data.results;
     const { data } = await api('trending/movie/day');
     const movies = data.results;
-
     createMovies(movies, trendingMoviesPreviewList, true);
 
 }

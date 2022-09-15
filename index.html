@@ -14,15 +14,18 @@
     <header id="header" class="header-container">
         <div class="header-top">
             <h1 class="header-title">Películas</h1>
-
+            <select id="select" name="language">
+                <option class="spanish" value="es-Co" selected>Español</option>
+                <option class="english" value="en-Us">Inglés</option>
+            </select>
         </div>
         <div class="header-bottom">
-            <span class="header-arrow inactive">&lt;</span>
+            <span class="header-arrow inactive">&lt; Volver</span>
             <h1 class="header-title header-title--categoryView inactive">Acción</h1>
         </div>
 
         <form id="searchForm" class="header-searchForm">
-            <input type="text" placeholder="Buscar película" />
+            <input id="input" type="text" placeholder="Buscar película" />
             <button id = "searchBtn">🔍</button>
         </form>
     </header>
@@ -91,24 +94,15 @@
     </section>
 
     <section id="movieDetail" class="movieDetail-container inactive">
-        <h1 class="movieDetail-title">Deadpool</h1>
-        <span class="movieDetail-score">7.6</span>
+        <h1 class="movieDetail-title"></h1>
+        <span class="movieDetail-score"></span>
         <p class="movieDetail-description">
-            Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
         </p>
 
         <article class="categories-list">
-            <div class="category-container">
+            <!-- <div class="category-container">
             <h3 id="id28" class="category-title">Romance</h3>
-            </div>
-
-            <div class="category-container">
-            <h3 id="id16" class="category-title">Drama</h3>
-            </div>
-
-            <div class="category-container">
-            <h3 id="id14" class="category-title">Acción</h3>
-            </div>
+            </div> -->
         </article>
 
         <article class="relatedMovies-container">

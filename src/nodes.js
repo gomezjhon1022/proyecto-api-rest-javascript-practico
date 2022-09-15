@@ -28,3 +28,13 @@ const trendingBtn = document.querySelector('.trendingPreview-btn');
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');
 const movieDetailScore = document.querySelector('.movieDetail-score');
+const select = document.querySelector('#select');
+const spanish = document.querySelector('.spanish');
+const english = document.querySelector('.english');
+const trending = document.querySelector('.trendingPreview-title');
+const categoriesPreviewTitle = document.querySelector('.categoriesPreview-title');
+const likedTitle = document.querySelector('.liked-title');
+const footer = document.querySelector('footer');
+const relatedMoviesTitle = document.querySelector('.relatedMovies-title');
+
+

@@ -32,7 +32,18 @@ window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 window.addEventListener('scroll', infiniteScroll, false);
 
-
+select.addEventListener('change', () => {
+    console.log("este es el de adentro")
+    console.log("antes del if",lang);
+    if (lang === 'es-Co') {
+        lang = 'en-Us'
+    } else {
+        lang = 'es-Co'
+    }
+    updateApi();
+    navigator();
+    updateText();
+})
 function navigator() {
     console.log({location});
 
@@ -182,4 +193,32 @@ function trendsPage() {
     getTrendingMovies();
 
     infiniteScroll = getPaginatedTrendingMovies;
+}
+
+function updateText() {
+    if (lang === 'en-Us') {
+        headerTitle.innerHTML ='Movies';
+        spanish.innerHTML = 'Spanish';
+        english.innerHTML = 'English';
+        arrowBtn.innerHTML = '&lt; Return';
+        searchFormInput.placeholder = "Search movie";
+        trending.innerHTML = 'Trending';
+        trendingBtn.innerHTML = 'See more';
+        categoriesPreviewTitle.innerHTML = 'Categories';
+        likedTitle.innerHTML = 'Favorite movies';
+        footer.innerHTML = '"You only fail when you stop trying" Albert Einstein';
+        relatedMoviesTitle.innerHTML = 'Related movies';
+    } else {
+        headerTitle.innerHTML ='Películas';
+        spanish.innerHTML = 'Español';
+        english.innerHTML = 'Inglés';
+        arrowBtn.innerHTML = '&lt; Volver';
+        searchFormInput.placeholder = "Buscar película";
+        trending.innerHTML = 'Tendencias';
+        trendingBtn.innerHTML = 'Ver más';
+        categoriesPreviewTitle.innerHTML = 'Categorias';
+        likedTitle.innerHTML = 'Películas favoritas';
+        footer.innerHTML = '"El poder de la imaginación nos hace infinitos." John Muir.';
+        relatedMoviesTitle.innerHTML = 'Películas similares';
+    }
 }
