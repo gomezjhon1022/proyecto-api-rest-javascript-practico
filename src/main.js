@@ -80,7 +80,7 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
         movieImg.setAttribute(
-            lazyLoad ? 'data-img': 'src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path);
+            lazyLoad ? 'data-img': 'src', 'https://image.tmdb.org/t/p/w500' + movie.poster_path);
 
         movieImg.addEventListener('click', () => {
                 location.hash = '#movie=' + movie.id;
@@ -106,6 +106,56 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         movieContainer.appendChild(movieImg);
         movieContainer.appendChild(movieBtn);
         container.appendChild(movieContainer);
+
+    });
+}
+
+function createCast(cast, container, { lazyLoad = false} = {}) {
+    container.innerHTML = "";
+    cast.forEach(character => {
+
+        const characterContainer = document.createElement('div');
+        characterContainer.classList.add('card-cast');
+
+        const characterImg = document.createElement('img');
+        characterImg.classList.add('cast-img');
+        characterImg.setAttribute('alt', character.name);
+        characterImg.setAttribute(
+            lazyLoad ? 'data-img': 'src', 'https://image.tmdb.org/t/p/w500' + character.profile_path);
+
+        characterImg.addEventListener('click', () => {
+                location.hash = '#character=' + character.name;
+            });
+        characterImg.addEventListener('error', () => {
+            characterImg.setAttribute('src', 'https://images.pexels.com/photos/4439425/pexels-photo-4439425.jpeg?auto=compress&cs=tinysrgb&w=400')
+        });
+
+        const characterName = document.createElement('h2');
+        characterName.classList.add('card-cast-name');
+        const characterNameText = document.createTextNode(character.name);
+        
+        
+        const characterCharacter = document.createElement('h3');
+        characterCharacter.classList.add('card-cast-character');
+        const characterCharacterText = document.createTextNode(character.character);
+
+
+       // console.log(likedMoviesList()[movie.id]);
+        // movieBtn.addEventListener('click', () => {
+        //     movieBtn.classList.toggle('movie-btn--liked');
+        //     likeMovie(movie);
+        // });
+
+        if (lazyLoad) {
+            lazyLoader.observe(characterImg);
+        }
+        characterName.appendChild(characterNameText);
+        characterCharacter.appendChild(characterCharacterText);
+        characterContainer.appendChild(characterImg);
+        characterContainer.appendChild(characterName);
+        characterContainer.appendChild(characterCharacter);
+        container.appendChild(characterContainer);
+
 
     });
 }
@@ -162,6 +212,7 @@ async function getMoviesByCategory(id) {
         }
     });
     const movies = data.results;
+    console.log(movies);
 
     maxPage = data.total_pages;
 
@@ -274,8 +325,8 @@ async function getPaginatedTrendingMovies() {
 async function getMovieById (id) {
 
     const { data: movie } = await api('movie/' + id);
-
-    const movieImgUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+    console.log(movie);
+    const movieImgUrl = 'https://image.tmdb.org/t/p/original' + movie.poster_path;
     headerSection.style.background = `
     linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
     url(${movieImgUrl})`;
@@ -290,18 +341,31 @@ async function getMovieById (id) {
     createCategories(movie.genres, movieDetailCategoriesList);
 
     getRelatedMoviesId(id);
+    getCastId(id);
 
 }
 
 async function getRelatedMoviesId(id) {
     const { data } = await api(`movie/${id}/similar`);
     const relatedMovies = data.results;
+    console.log('relacionadas',relatedMovies);
 
     createMovies(relatedMovies, relatedMoviesContainer);
 
     relatedMoviesContainer.scrollTo(0, 0);
 
 }
+async function getCastId(id) {
+    const { data } = await api(`movie/${id}/credits`);
+    const cast = data.cast;
+    console.log('casting',cast);
+    createCast(cast, movieCastContainer);
+
+
+    relatedMoviesContainer.scrollTo(0, 0);
+
+}
+
 
 function getLikedMovies() {
     const likedMovies = likedMoviesList();

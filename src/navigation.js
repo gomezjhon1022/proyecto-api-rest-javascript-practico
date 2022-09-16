@@ -27,14 +27,16 @@ arrowBtn.addEventListener('click', () => {
     }
     // location.hash = '#home';
 });
+homeBtn.addEventListener('click', () => {
+    location.hash = '#home';
+})
+
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 window.addEventListener('scroll', infiniteScroll, false);
 
 select.addEventListener('change', () => {
-    console.log("este es el de adentro")
-    console.log("antes del if",lang);
     if (lang === 'es-Co') {
         lang = 'en-Us'
     } else {
@@ -81,7 +83,9 @@ function homePage() {
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.remove('inactive');
     headerCategoryTitle.classList.add('inactive');
+    categoryTitleContainer.classList.add('inactive');
     searchForm.classList.remove('inactive');
+    homeBtn.classList.add('inactive');
 
     trendingPreviewSection.classList.remove('inactive');
     categoriesPreviewSection.classList.remove('inactive');
@@ -102,7 +106,10 @@ function categoriesPage() {
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
+    headerCategoryTitle.classList.add('inactive');
+    categoryTitleContainer.classList.remove('inactive');
+    homeBtn.classList.remove('inactive');
+
     searchForm.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
@@ -114,10 +121,12 @@ function categoriesPage() {
     // ['#category', 'id-name' ]
     const [_, categoryData] = location.hash.split('=');
     const [categoryId, categoryName] = categoryData.split('-');
+    console.log(categoryName);
+    console.log(decodeURIComponent(categoryName));
 
     // headerCategoryTitle.innerHTML = categoryName;
 
-    headerCategoryTitle.innerHTML = decodeURIComponent(categoryName);
+    categoryTitle.innerHTML = decodeURIComponent(categoryName);
 
     getMoviesByCategory(categoryId);
 
@@ -134,6 +143,7 @@ function movieDetailsPage() {
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.add('inactive');
+    homeBtn.classList.remove('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -157,6 +167,7 @@ function searchPage() {
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
+    homeBtn.classList.remove('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -179,6 +190,7 @@ function trendsPage() {
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
+    headerTitle.classList.add('header-title--trendsView');
     headerCategoryTitle.classList.remove('inactive');
     searchForm.classList.add('inactive');
 
@@ -188,7 +200,7 @@ function trendsPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
-    headerCategoryTitle.innerHTML = 'Tendencias';
+    //headerCategoryTitle.innerHTML = 'Tendencias';
 
     getTrendingMovies();
 
@@ -202,23 +214,27 @@ function updateText() {
         english.innerHTML = 'English';
         arrowBtn.innerHTML = '&lt; Return';
         searchFormInput.placeholder = "Search movie";
-        trending.innerHTML = 'Trending';
         trendingBtn.innerHTML = 'See more';
         categoriesPreviewTitle.innerHTML = 'Categories';
         likedTitle.innerHTML = 'Favorite movies';
         footer.innerHTML = '"You only fail when you stop trying" Albert Einstein';
         relatedMoviesTitle.innerHTML = 'Related movies';
+        headerCategoryTitle.innerHTML = 'Trends';
+        trendingPreviewTitle.innerHTML = 'Trends';
+        homeBtn.innerHTML = 'Home';
     } else {
         headerTitle.innerHTML ='Películas';
         spanish.innerHTML = 'Español';
         english.innerHTML = 'Inglés';
         arrowBtn.innerHTML = '&lt; Volver';
         searchFormInput.placeholder = "Buscar película";
-        trending.innerHTML = 'Tendencias';
         trendingBtn.innerHTML = 'Ver más';
         categoriesPreviewTitle.innerHTML = 'Categorias';
         likedTitle.innerHTML = 'Películas favoritas';
         footer.innerHTML = '"El poder de la imaginación nos hace infinitos." John Muir.';
         relatedMoviesTitle.innerHTML = 'Películas similares';
+        headerCategoryTitle.innerHTML = 'Tendencias';
+        trendingPreviewTitle.innerHTML = 'Tendencias';
+        homeBtn.innerHTML = 'Inicio';
     }
 }

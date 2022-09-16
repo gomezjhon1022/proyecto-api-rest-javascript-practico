@@ -20,8 +20,11 @@
             </select>
         </div>
         <div class="header-bottom">
-            <span class="header-arrow inactive">&lt; Volver</span>
-            <h1 class="header-title header-title--categoryView inactive">Acción</h1>
+            <div class="header-arrow-container">
+                <span class="header-arrow inactive">&lt; Volver</span>
+                <button class="home-btn inactive">Inicio</button>
+            </div>
+            <h1 class="header-title header-title--categoryView inactive">Tendencias</h1>
         </div>
 
         <form id="searchForm" class="header-searchForm">
@@ -29,7 +32,9 @@
             <button id = "searchBtn">🔍</button>
         </form>
     </header>
-
+    <div class="category-title-container inactive">
+        <h1 class="category-title">botton nuevo</h1>
+    </div>
     <section id="trendingPreview" class="trendingPreview-container">
 
         <div class="trendingPreview-header">
@@ -37,7 +42,7 @@
             <button class="trendingPreview-btn">Ver más</button>
         </div>
 
-        <article class="trendingPreview-movieList">
+        <article class="trendingPreview-movieList scroll">
             <div class="movie-container movie-container--loading"></div>
             <div class="movie-container movie-container--loading"></div>
             <div class="movie-container movie-container--loading"></div>
@@ -55,7 +60,7 @@
     <section id="categoriesPreview" class="categoriesPreview-container">
         <h2 class="categoriesPreview-title">Categorías</h2>
 
-        <article class="categoriesPreview-list">
+        <article class="categoriesPreview-list scroll">
             <div class="category-container category-container--loading"></div>
             <div class="category-container category-container--loading"></div>
 
@@ -71,7 +76,7 @@
             <h2 class="liked-title">Películas favoritas</h2>
         </div>
 
-        <article class="liked-movieList">
+        <article class="liked-movieList scroll">
             <div class="movie-container">
                 <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img" alt="nombre pelicula" />
             </div>
@@ -105,10 +110,86 @@
             </div> -->
         </article>
 
+        <article class="movieCast-container">
+            <h1 class="movieCast-title">Reparto</h1>
+            <div class="movieCast-image-container scroll">
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="cart-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="card-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="card-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="card-cast-character">Emily</h3>
+                </div>
+                <div class="card-cast">
+                    <img class="cast-img" src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"/>
+                    <h2 class="card-cast-name">Aubrey Plaza</h2>
+                    <h3 class="card-cast-character">Emily</h3>
+                </div>
+            </div>
+        </article>
+
         <article class="relatedMovies-container">
             <h2 class="relatedMovies-title">Películas similares</h2>
 
-            <div class="relatedMovies-scrollContainer">
+            <div class="relatedMovies-scrollContainer scroll">
                 <div class="movie-container movie-container--loading"></div>
 
                 <div class="movie-container movie-container--loading"></div>
