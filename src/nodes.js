@@ -6,6 +6,7 @@ const categoriesPreviewSection = document.querySelector('#categoriesPreview');
 const genericSection = document.querySelector('#genericList');
 const movieDetailSection = document.querySelector('#movieDetail');
 const likedMoviesSection = document.querySelector('#liked');
+const actorDetailSection = document.querySelector('#actorDetail');
 
 // Lists & Containers
 const searchForm = document.querySelector('#searchForm');
@@ -39,8 +40,16 @@ const categoriesPreviewTitle = document.querySelector('.categoriesPreview-title'
 const likedTitle = document.querySelector('.liked-title');
 const footer = document.querySelector('footer');
 const relatedMoviesTitle = document.querySelector('.relatedMovies-title');
-
 const homeBtn = document.querySelector('.home-btn');
-
 const movieCastContainer = document.querySelector('.movieCast-image-container');
+
+const actorImage = document.querySelector('.actor-image');
+const actorName = document.querySelector('.actor-name');
+const biographyTitle = document.querySelector('.biography-title');
+const biography = document.querySelector('.biography');
+const actorPopularity = document.querySelector('.actor-popularity');
+const movieCastTitle = document.querySelector('.movieCast-title');
+
+
+
 

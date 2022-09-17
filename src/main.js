@@ -39,7 +39,6 @@ function likedMoviesList() {
 }
 
 function likeMovie(movie) {
-
     const likedMovies = likedMoviesList();
     if (likedMovies[movie.id]) {
         likedMovies[movie.id] = undefined;
@@ -48,9 +47,7 @@ function likeMovie(movie) {
     }
     localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
 
-    if (location.hash == ''){
-        homePage();
-    }
+    getLikedMovies();
 
 }
 
@@ -93,7 +90,6 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         movieBtn.classList.add('movie-btn');
         likedMoviesList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
 
-       // console.log(likedMoviesList()[movie.id]);
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
             likeMovie(movie);
@@ -120,11 +116,16 @@ function createCast(cast, container, { lazyLoad = false} = {}) {
         const characterImg = document.createElement('img');
         characterImg.classList.add('cast-img');
         characterImg.setAttribute('alt', character.name);
+        const urlImg = 'https://image.tmdb.org/t/p/w500' + character.profile_path
         characterImg.setAttribute(
-            lazyLoad ? 'data-img': 'src', 'https://image.tmdb.org/t/p/w500' + character.profile_path);
+            lazyLoad ? 'data-img': 'src', urlImg );
 
-        characterImg.addEventListener('click', () => {
-                location.hash = '#character=' + character.name;
+        const figure = document.createElement('figure');
+        const layer = document.createElement('div');
+        layer.classList.add('layer');
+
+        layer.addEventListener('click', () => {
+                location.hash = '#character=' + character.id;
             });
         characterImg.addEventListener('error', () => {
             characterImg.setAttribute('src', 'https://images.pexels.com/photos/4439425/pexels-photo-4439425.jpeg?auto=compress&cs=tinysrgb&w=400')
@@ -133,18 +134,10 @@ function createCast(cast, container, { lazyLoad = false} = {}) {
         const characterName = document.createElement('h2');
         characterName.classList.add('card-cast-name');
         const characterNameText = document.createTextNode(character.name);
-        
-        
+
         const characterCharacter = document.createElement('h3');
         characterCharacter.classList.add('card-cast-character');
         const characterCharacterText = document.createTextNode(character.character);
-
-
-       // console.log(likedMoviesList()[movie.id]);
-        // movieBtn.addEventListener('click', () => {
-        //     movieBtn.classList.toggle('movie-btn--liked');
-        //     likeMovie(movie);
-        // });
 
         if (lazyLoad) {
             lazyLoader.observe(characterImg);
@@ -152,9 +145,13 @@ function createCast(cast, container, { lazyLoad = false} = {}) {
         characterName.appendChild(characterNameText);
         characterCharacter.appendChild(characterCharacterText);
         characterContainer.appendChild(characterImg);
-        characterContainer.appendChild(characterName);
-        characterContainer.appendChild(characterCharacter);
-        container.appendChild(characterContainer);
+
+        layer.appendChild(characterName);
+        characterContainer.appendChild(layer);
+        layer.appendChild(characterCharacter);
+        characterContainer.appendChild(layer);
+        figure.appendChild(characterContainer);
+        container.appendChild(figure);
 
 
     });
@@ -187,13 +184,9 @@ function createCategories (categories, container) {
 // Llamados a la API
 
 async function getTrendingMoviesPreview () {
-    // // const res = await fetch ('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
-    // // const data = await res.json();
-    // // const movies = data.results;
     const { data } = await api('trending/movie/day');
     const movies = data.results;
     createMovies(movies, trendingMoviesPreviewList, true);
-
 }
 
 async function getCategoriesPreview () {
@@ -201,7 +194,6 @@ async function getCategoriesPreview () {
     const categories =data.genres;
 
     createCategories(categories, categoriesPreviewList);
-
 }
 
 async function getMoviesByCategory(id) {
@@ -288,11 +280,6 @@ async function getTrendingMovies () {
     maxPage = data.total_pages;
 
     createMovies(movies, genericSection,{lazyLoad: true, clean: true});
-
-    // const btnLoadMore = document.createElement('button');
-    // btnLoadMore.innerText = 'Cargar más';
-    // btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
-    // genericSection.appendChild(btnLoadMore);
 }
 
 async function getPaginatedTrendingMovies() {
@@ -314,12 +301,6 @@ async function getPaginatedTrendingMovies() {
 
         createMovies(movies, genericSection, {lazyLoad: true,     clean: false});
     }
-
-
-    // const btnLoadMore = document.createElement('button')
-    // btnLoadMore.innerText = 'Cargar más';
-    // btnLoadMore.addEventListener('click', getPaginatedTrendingMovies);
-    // genericSection.appendChild(btnLoadMore);
 }
 
 async function getMovieById (id) {
@@ -330,9 +311,6 @@ async function getMovieById (id) {
     headerSection.style.background = `
     linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
     url(${movieImgUrl})`;
-    // headerSection.style.backgroundPosition = 'center';
-    // headerSection.style.backgroundRepeat = 'no-repeat';
-    // headerSection.style.backgroundSize = 'cover';
 
     movieDetailTitle.textContent = movie.title ;
     movieDetailDescription.textContent =  movie.overview;
@@ -342,6 +320,18 @@ async function getMovieById (id) {
 
     getRelatedMoviesId(id);
     getCastId(id);
+
+}
+
+async function getActorById (id) {
+
+    const { data: actor } = await api('person/' + id);
+    console.log(actor);
+
+    actorName.textContent = actor.name +" ( "+ actor.birthday + (actor.deathday? " , " +actor.deathday +" ) ": " ) ");
+    biography.textContent = actor.biography;
+    actorPopularity.textContent = actor.popularity;
+    actorImage.setAttribute('src','https://image.tmdb.org/t/p/original'+actor.profile_path);
 
 }
 
@@ -361,18 +351,14 @@ async function getCastId(id) {
     console.log('casting',cast);
     createCast(cast, movieCastContainer);
 
-
     relatedMoviesContainer.scrollTo(0, 0);
-
 }
-
 
 function getLikedMovies() {
     const likedMovies = likedMoviesList();
     const moviesArray = Object.values(likedMovies);
 
     createMovies(moviesArray, likedMoviesListArticle, { lazyLoad: true, clean: true});
-
 }
 
 
