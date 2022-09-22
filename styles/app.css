@@ -1,5 +1,8 @@
 /* General */
-* { box-sizing: border-box; }
+* { box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
 
 :root {
 
@@ -17,7 +20,7 @@
 }
 
 html {
-    background-color: black;
+    background-color: var(--red-dark-2);
 }
 
 body {
@@ -26,8 +29,9 @@ body {
     font-family: var(--font-family-text);
     font-weight: var(--font-weight-text1);
     font-size: 16px;
-    margin: 4px 0 0 0;
-    padding: 0;
+    margin: 6px 0 0 0;
+    z-index: 0;
+    height: auto;
 }
 
 h1, h2, h3 {
@@ -157,6 +161,7 @@ button {
     flex-wrap:nowrap;
     overflow-x: scroll;
 }
+
 .categories-list {
     display: flex;
     align-items: center;
@@ -186,22 +191,35 @@ button {
 .header-container {
     padding-top: 40px;
     background-color: black;
+    z-index: 4;
+}
+
+.header-layer--long {
+    position: absolute;
+    top: 0;
 }
 
 .header-top {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
+    margin: 15px 15px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.header-bottom {
+    position: relative;
+    z-index: 10;
+    margin: 0px 20px;
 }
 
 .header-container--long {
-    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
     background-size: cover !important;
     background-position: top;
     background-repeat: no-repeat;
-
-    height: 90%;
+    height: 100%;
     position: absolute;
     top: 0;
     width: 100%;
@@ -212,10 +230,11 @@ button {
     background: linear-gradient(180deg, rgba(185, 75, 75, 0.6) 0%, rgba(238, 204, 117, 0) 72.92%);
 }
 
-.header-title {
+.header-title, .header-title-movie {
     margin-bottom: 16px;
     color: var(--red-dark-2);
 }
+
 .category-title-container .category-title {
     margin-bottom: 16px;
     color: var(--red-dark-2);
@@ -227,9 +246,6 @@ button {
     margin-bottom: 16px;
     cursor: pointer;
     display: inline-block;
-}
-.header-arrow--white {
-    color: white;
 }
 
 .header-searchForm {
@@ -247,6 +263,7 @@ button {
     border-bottom-left-radius: 8px;
     border: 2px solid white;
 }
+
 .header-searchForm button {
     width: 56px;
     height: 48px;
@@ -274,7 +291,6 @@ button {
     background-color: var(--red-dark-2);
 }
 
-
 .trendingPreview-movieList, .liked-movieList {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -289,8 +305,6 @@ button {
     margin-right: 12px;
     overflow-x: scroll ;
     padding-bottom: 30px;
-
-
 }
 
 .scroll::-webkit-scrollbar-track{
@@ -319,10 +333,8 @@ button {
     max-width: 150px;
 }
 
-
 /* Categories */
 .category-container {
-
     background-color: #333333;
     border-radius: 15px;
     margin: 15px 10px 20px 10px;
@@ -331,6 +343,7 @@ button {
     align-items: center;
     cursor: pointer;
 }
+
 .category-container:hover {
     background-color: var(--red-dark-2);
 }
@@ -340,12 +353,11 @@ button {
     white-space: nowrap;
 }
 
-
 /* Generic List (search, trending & category) */
 .genericList-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     padding: 32px 24px;
 }
@@ -353,22 +365,24 @@ button {
 .genericList-container .movie-container {
     display: inline-block;
     width: 47.5%;
+    margin: 4px 0;
 }
 
 .genericList-container .movie-img {
     width: 100%;
 }
 
-
 /* Movie Detail */
 .movieDetail-container {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     padding: 32px 24px;
-    margin-top: 603px;
-    z-index: 1;
+    margin-top: 517px;
+    z-index: 5;
     position: absolute;
+    width: 100%;;
     background-color: black;
+    top: -5px;
 }
 
 .movieDetail-title {
@@ -385,6 +399,7 @@ button {
     width: 18%;
     font-weight: var(--font-weight-title2);
 }
+
 .movieDetail-score::before {
     content: '★';
     color:#EECC75;
@@ -404,7 +419,6 @@ button {
 
 .movieCast-container {
     margin-bottom: 104px;
-    /* cambiar */
 }
 
 figure {
@@ -412,11 +426,13 @@ figure {
     margin: 0 4px;
     overflow: hidden;
 }
+
 .card-cast {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .card-cast-name , .card-cast-character {
     width: 125px;
     overflow: hidden;
@@ -428,6 +444,7 @@ figure {
     cursor: pointer;
     transition: all 500ms ease-out;
 }
+
 .card-cast .layer {
     display: flex;
     flex-direction: column;
@@ -442,6 +459,7 @@ figure {
     opacity: 0;
     visibility: hidden;
 }
+
 .card-cast:hover > .layer {
     opacity: 1;
     visibility: visible;
@@ -449,10 +467,17 @@ figure {
 
 /* actor detail */
 
+.actor-info {
+    padding: 20px;
+}
+
 .actor-image {
     width: 520px;
     float: left;
-    padding: 30px;
+    padding: 20px;
+}
+.actor-name, .biography-title, .biography {
+    margin-bottom: 10px;
 }
 
 .actor-popularity::before {
@@ -501,7 +526,6 @@ footer {
     width: 100%;
 }
 
-
 /* Navigation */
 .inactive {
     display: none;
@@ -514,5 +538,86 @@ footer {
     }
     50% {
         opacity: 0;
+    }
+}
+
+@media (min-width:650px) {
+    .genericList-container .movie-container{
+        max-width: 250px;
+    }
+}
+
+@media (min-width:500px) {
+
+    .genericList-container .movie-container{
+        max-width: 250px;
+    }
+
+    .header-layer--long {
+        position: absolute;
+        background: linear-gradient(90deg, rgba(0, 0, 0,0.8) 28.27%, rgba(0, 0, 0, 0) 75.17%);
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+    }
+    .header-container {
+        height:100%;
+    }
+    .movieDetail-title, .movieDetail-score, .movieDetail-description {
+        color: white;
+        position:absolute;
+        width: 60%;
+        top: -390px;
+    }
+    .movieDetail-score {
+        top: -360px;
+    }
+    .movieDetail-description {
+        top: -330px;
+    }
+    .movieDetail-container {
+        position: absolute;
+        height: 700px;
+    }
+    .categories-list, .movieCast-container,.relatedMovies-container {
+        position: relative;
+        /* top:-280px; */
+        z-index: -1;
+
+    }
+}
+
+@media (min-width:780px) {
+
+    .header-layer--long {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 29.27%, rgba(0, 0, 0, 0) 79.17%);
+        height: 980px;
+    }
+
+    .movieDetail-title, .movieDetail-score, .movieDetail-description {
+        position:absolute;
+        width: 45%;
+        top: -560px;
+        /* top: -420px; */
+    }
+    .movieDetail-score {
+        top: -530px;
+    }
+    .movieDetail-description {
+        top: -500px;
+    }
+
+    .movieDetail-container {
+        margin-top: 817px;
+    }
+    .header-container--long {
+        height: 990px;
+    }
+
+}
+
+@media (max-width:780px) {
+    .actor-image {
+        width: 50%;
     }
 }

@@ -29,9 +29,10 @@ arrowBtn.addEventListener('click', () => {
         window.history.back();
     }
 });
+
 homeBtn.addEventListener('click', () => {
     location.hash = '#home';
-})
+});
 
 
 window.addEventListener('DOMContentLoaded', navigator, false);
@@ -81,10 +82,10 @@ function navigator() {
 function homePage() {
     console.log('Home!!');
 
+    headerSection.classList.remove('inactive');
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.add('inactive');
-    arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.remove('inactive');
     headerCategoryTitle.classList.add('inactive');
     categoryTitleContainer.classList.add('inactive');
@@ -97,10 +98,19 @@ function homePage() {
     genericSection.classList.add('inactive');
     movieDetailSection.classList.add('inactive');
     actorDetailSection.classList.add('inactive');
+    headerLayer.classList.add('inactive');
 
     getTrendingMoviesPreview();
     getCategoriesPreview ();
-    getLikedMovies();
+    const liked =likedMoviesList();
+    if (Object.entries(liked).length === 0) {
+        console.log('no existe liked');
+        likedMoviesListArticle.classList.add('inactive');
+    } else {
+        likedMoviesListArticle.classList.remove('inactive');
+        getLikedMovies();
+    }
+    
 }
 
 function categoriesPage() {
@@ -109,11 +119,11 @@ function categoriesPage() {
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
-    arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     categoryTitleContainer.classList.remove('inactive');
     homeBtn.classList.remove('inactive');
+
 
     searchForm.classList.add('inactive');
 
@@ -121,8 +131,9 @@ function categoriesPage() {
     categoriesPreviewSection.classList.add('inactive');
     likedMoviesSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
-    movieDetailSection.classList.add('inactive');
     actorDetailSection.classList.add('inactive');
+    headerLayer.classList.add('inactive');
+    movieDetailSection.classList.add('inactive');
 
     // ['#category', 'id-name' ]
     const [_, categoryData] = location.hash.split('=');
@@ -140,9 +151,10 @@ function categoriesPage() {
 function movieDetailsPage() {
     console.log('Movie!');
 
+    headerSection.classList.remove('inactive');
     headerSection.classList.add('header-container--long');
+    headerTop.classList.remove('inactive');
     arrowBtn.classList.remove('inactive');
-    arrowBtn.classList.add('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.add('inactive');
@@ -154,6 +166,7 @@ function movieDetailsPage() {
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
     actorDetailSection.classList.add('inactive');
+    headerLayer.classList.remove('inactive');
 
      // ['#movie', '1022' ]
     const [_, movieId] = location.hash.split('=');
@@ -167,7 +180,6 @@ function searchPage() {
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
-    arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
@@ -179,6 +191,7 @@ function searchPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
     actorDetailSection.classList.add('inactive');
+    headerLayer.classList.add('inactive');
 
         // ['#search', 'query' ]
         const [_, query] = location.hash.split('=');
@@ -191,13 +204,15 @@ function trendsPage() {
     console.log('Trends!!');
 
     headerSection.classList.remove('header-container--long');
+    headerSection.classList.add('inactive');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
-    arrowBtn.classList.remove('header-arrow--white');
+
     headerTitle.classList.add('inactive');
-    headerTitle.classList.add('header-title--trendsView');
+    // headerTitle.classList.add('header-title--trendsView');
     headerCategoryTitle.classList.remove('inactive');
     searchForm.classList.add('inactive');
+    homeBtn.classList.remove('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -205,6 +220,7 @@ function trendsPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
     actorDetailSection.classList.add('inactive');
+    headerLayer.classList.add('inactive');
 
     getTrendingMovies();
 
@@ -214,25 +230,25 @@ function trendsPage() {
 function characterPage() {
     console.log('Character!');
 
+    headerSection.classList.add('inactive');
+
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
-    arrowBtn.classList.add('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.add('inactive');
     homeBtn.classList.remove('inactive');
+
     categoryTitleContainer.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     likedMoviesSection.classList.add('inactive');
     genericSection.classList.add('inactive');
-    movieDetailSection.classList.add('inactive');
-    movieDetailSection.classList.add('inactive');
     actorDetailSection.classList.remove('inactive');
-
-
+    headerLayer.classList.add('inactive');
+    movieDetailSection.classList.add('inactive');
      // ['#actor', '1022' ]
     const [_, actorId] = location.hash.split('=');
     console.log(actorId);
@@ -242,6 +258,7 @@ function characterPage() {
 
 function updateText() {
     if (lang === 'en-Us') {
+ 
         headerTitle.innerHTML ='Movies';
         spanish.innerHTML = 'Spanish';
         english.innerHTML = 'English';

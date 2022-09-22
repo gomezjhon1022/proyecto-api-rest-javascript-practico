@@ -18,6 +18,7 @@ const likedMoviesListArticle = document.querySelector('.liked-movieList');
 
 // Elements
 const headerTitle = document.querySelector('.header-title');
+
 const arrowBtn = document.querySelector('.header-arrow');
 const headerCategoryTitle = document.querySelector('.header-title--categoryView');
 
@@ -39,7 +40,6 @@ const categoryTitle = document.querySelector('.category-title');
 const categoriesPreviewTitle = document.querySelector('.categoriesPreview-title');
 const likedTitle = document.querySelector('.liked-title');
 const footer = document.querySelector('footer');
-const relatedMoviesTitle = document.querySelector('.relatedMovies-title');
 const homeBtn = document.querySelector('.home-btn');
 const movieCastContainer = document.querySelector('.movieCast-image-container');
 
@@ -49,6 +49,14 @@ const biographyTitle = document.querySelector('.biography-title');
 const biography = document.querySelector('.biography');
 const actorPopularity = document.querySelector('.actor-popularity');
 const movieCastTitle = document.querySelector('.movieCast-title');
+
+const headerLayer = document.querySelector('.header-layer--long');
+
+const headerTop = document.querySelector('.header-top');
+const headerBottom = document.querySelector('.header-bottom');
+
+const relatedMoviesTitle = document.querySelector('.relatedMovies-title');
+
 
 
 

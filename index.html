@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styles/app.css" />
 </head>
 <body>
-    <header id="header" class="header-container">
+    <div class="header">
         <div class="header-top">
             <h1 class="header-title">Películas</h1>
             <select id="select" name="language">
@@ -26,12 +26,16 @@
             </div>
             <h1 class="header-title header-title--categoryView inactive">Tendencias</h1>
         </div>
+    </div>
 
+    <header id="header" class="header-container">
         <form id="searchForm" class="header-searchForm">
             <input id="input" type="text" placeholder="Buscar película" />
             <button id = "searchBtn">🔍</button>
         </form>
     </header>
+    <section class="header-layer--long inactive">
+    </section>
     <div class="category-title-container inactive">
         <h1 class="category-title">botton nuevo</h1>
     </div>
@@ -64,9 +68,6 @@
         </div>
 
         <article class="liked-movieList scroll">
-            <div class="movie-container">
-                <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img" alt="nombre pelicula" />
-            </div>
 
         </article>
 

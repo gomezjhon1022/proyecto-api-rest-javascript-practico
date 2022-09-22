@@ -29,7 +29,6 @@ function updateApi() {
 function likedMoviesList() {
     const item = JSON.parse(localStorage.getItem('liked_movies'));
     let movies;
-
     if (item) {
         movies = item;
     } else {
@@ -47,7 +46,14 @@ function likeMovie(movie) {
     }
     localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
 
-    getLikedMovies();
+    const liked =likedMoviesList();
+    if (Object.entries(liked).length === 0) {
+        console.log('no existe liked');
+        likedMoviesListArticle.classList.add('inactive');
+    } else {
+        likedMoviesListArticle.classList.remove('inactive');
+        getLikedMovies();
+    }
 
 }
 
@@ -93,6 +99,8 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
             likeMovie(movie);
+            //tendencias preview
+            getTrendingMoviesPreview();
         });
 
         if (lazyLoad) {
@@ -309,7 +317,7 @@ async function getMovieById (id) {
     console.log(movie);
     const movieImgUrl = 'https://image.tmdb.org/t/p/original' + movie.poster_path;
     headerSection.style.background = `
-    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 22.27%, rgba(0, 0, 0, 0) 29.35%),
     url(${movieImgUrl})`;
 
     movieDetailTitle.textContent = movie.title ;
