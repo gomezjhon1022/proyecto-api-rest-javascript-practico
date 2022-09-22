@@ -99,7 +99,6 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
             likeMovie(movie);
-            //tendencias preview
             getTrendingMoviesPreview();
         });
 

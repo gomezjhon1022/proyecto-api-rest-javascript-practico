@@ -110,7 +110,6 @@ function homePage() {
         likedMoviesListArticle.classList.remove('inactive');
         getLikedMovies();
     }
-    
 }
 
 function categoriesPage() {
@@ -258,7 +257,6 @@ function characterPage() {
 
 function updateText() {
     if (lang === 'en-Us') {
- 
         headerTitle.innerHTML ='Movies';
         spanish.innerHTML = 'Spanish';
         english.innerHTML = 'English';
@@ -281,7 +279,7 @@ function updateText() {
         arrowBtn.innerHTML = '&lt; Volver';
         searchFormInput.placeholder = "Buscar película";
         trendingBtn.innerHTML = 'Ver más';
-        categoriesPreviewTitle.innerHTML = 'Categorias';
+        categoriesPreviewTitle.innerHTML = 'Categorías';
         likedTitle.innerHTML = 'Películas favoritas';
         footer.innerHTML = '"El poder de la imaginación nos hace infinitos." John Muir.';
         relatedMoviesTitle.innerHTML = 'Películas similares';
